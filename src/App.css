@@ -1,4 +1,8 @@
-
 .highlight {
-  background: #f8f9fa;
+	background: #f8f9fa;
+}
+
+.select-item-list {
+	max-height: 300px;
+	overflow: auto;
 }

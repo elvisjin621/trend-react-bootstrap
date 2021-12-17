@@ -32,9 +32,9 @@ export const Repositories: React.FC<RepositoriesProps> = ({
 						<Button variant="outline-secondary">Devlopers</Button>
 					</ButtonGroup>
 					<ButtonToolbar className="ms-auto">
-						{searchItems.map((items) => {
+						{searchItems.map((items, index) => {
 							if (ranges.indexOf(items.range) > -1) {
-								return <DropdownSelector items={items} />;
+								return <DropdownSelector key={index} items={items} />;
 							}
 							return <></>;
 						})}

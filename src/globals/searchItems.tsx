@@ -2,7 +2,7 @@ import { SearchItems } from "../types/SearchItems";
 
 export const searchItems: SearchItems[] = [
 	{
-    range: "spoken_language",
+		range: "spoken_language",
 		label: "Spoken Language",
 		active: true,
 		selected: "",
@@ -836,10 +836,10 @@ export const searchItems: SearchItems[] = [
 		],
 	},
 	{
-    range: 'date',
+		range: "date",
 		label: "Date range",
 		active: true,
-		selected: "",
+		selected: "daily",
 		categories: [
 			{ value: "daily", label: "Today" },
 			{ value: "weekly", label: "This week" },

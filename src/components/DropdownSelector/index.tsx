@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Dropdown, FormControl } from "react-bootstrap";
 import { SearchItems } from "../../types/SearchItems";
+import { DropdownSelected } from "../DropdownSelected";
 
 type CustomToggleProps = {
 	children?: React.ReactNode;
@@ -12,13 +13,13 @@ const CustomToggle = React.forwardRef(
 		<a
 			href=""
 			ref={ref}
+			className="btn btn-light btn-sm dropdown-toggle me-2"
 			onClick={(e) => {
 				e.preventDefault();
 				props.onClick(e);
 			}}
 		>
 			{props.children}
-			&#x25bc;
 		</a>
 	)
 );
@@ -43,19 +44,24 @@ const CustomMenu = React.forwardRef(
 				className={props.className}
 				aria-labelledby={props.labeledBy}
 			>
-				<FormControl
-					autoFocus
-					className="mx-3 my-2 w-auto"
-					placeholder="Type to filter..."
-					onChange={(e) => setValue(e.target.value)}
-					value={value}
-				/>
-				<ul className="list-unstyled">
+				<div className="p-2">
+					<FormControl
+						autoFocus
+						placeholder="Type to filter..."
+						onChange={(e) => setValue(e.target.value)}
+						size="sm"
+						value={value}
+					/>
+				</div>
+				<div className="border-top select-item-list">
 					{React.Children.toArray(props.children).filter(
 						(child: any) =>
-							!value || child.props.children.toLowerCase().startsWith(value)
+							!value ||
+							child.props.children
+								.toLowerCase()
+								.indexOf(value.toLowerCase()) !== -1
 					)}
-				</ul>
+				</div>
 			</div>
 		);
 	}
@@ -70,11 +76,6 @@ export const DropdownSelector: React.FC<DropdownSelectorProps> = ({
 }) => {
 	const [selected, setSelected] = useState(items.selected);
 
-	const theSelectedItem = () => {
-		const selectItem = items.categories.find((item) => item.value === selected);
-		return selectItem ? selectItem.label : "Select " + items.label;
-	};
-
 	return (
 		<Dropdown
 			onSelect={(eventKey, e) =>
@@ -82,13 +83,17 @@ export const DropdownSelector: React.FC<DropdownSelectorProps> = ({
 			}
 		>
 			<Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
-				{theSelectedItem()}
+				<DropdownSelected items={items} selected={selected} />
 			</Dropdown.Toggle>
 
-			<Dropdown.Menu as={CustomMenu}>
-				{items.categories.map((item) => {
+			<Dropdown.Menu as={CustomMenu} className="p-0">
+				{items.categories.map((item, index) => {
 					return (
-						<Dropdown.Item key={item.value} eventKey={item.value}>
+						<Dropdown.Item
+							key={index}
+							eventKey={item.value}
+							className="border-bottom small"
+						>
 							{item.label}
 						</Dropdown.Item>
 					);

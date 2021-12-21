@@ -1,15 +1,7 @@
 import React from "react";
-import {
-	Container,
-	Navbar,
-	ButtonGroup,
-	Button,
-	ButtonToolbar,
-} from "react-bootstrap";
-import { DropdownSelector } from "../../components/DropdownSelector";
-
+import { Container } from "react-bootstrap";
 import { PageTitle } from "../../components/PageTitle";
-import { searchItems } from "../../globals/searchItems";
+import { Toolbar } from "../../components/Toolbar";
 
 interface RepositoriesProps {
 	title: string;
@@ -26,20 +18,7 @@ export const Repositories: React.FC<RepositoriesProps> = ({
 		<>
 			<PageTitle title={title} description={description} />
 			<Container>
-				<Navbar bg="light" className="border mt-5 mb-5 rounded-top p-3">
-					<ButtonGroup size="sm">
-						<Button>Repositories</Button>
-						<Button variant="outline-secondary">Devlopers</Button>
-					</ButtonGroup>
-					<ButtonToolbar className="ms-auto">
-						{searchItems.map((items, index) => {
-							if (ranges.indexOf(items.range) > -1) {
-								return <DropdownSelector key={index} items={items} />;
-							}
-							return <></>;
-						})}
-					</ButtonToolbar>
-				</Navbar>
+				<Toolbar ranges={ranges} />
 				<div className="rounded-bottom"></div>
 			</Container>
 		</>

@@ -50,7 +50,7 @@ export const Developer: React.FC<DeveloperProps> = ({ developer }) => {
 								</a>
 							</h4>
 							<p className="small mb-0">
-								{developer.popularRepository.description}asdfasdfa asdf as fasd
+								{developer.popularRepository.description}
 								fa
 							</p>
 						</div>

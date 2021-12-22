@@ -6,6 +6,7 @@ export const searchItems: SearchItems[] = [
 		label: "Spoken Language",
 		active: true,
 		selected: "",
+		param: "spoken_language_code",
 		categories: [
 			{ value: "", label: "Any" },
 			{ value: "ab", label: "Abkhazian" },
@@ -199,6 +200,7 @@ export const searchItems: SearchItems[] = [
 		label: "Language",
 		active: true,
 		selected: "",
+		param: "language_code",
 		categories: [
 			{ value: "", label: "Any" },
 			{ value: "c++", label: "C++" },
@@ -840,6 +842,7 @@ export const searchItems: SearchItems[] = [
 		label: "Date range",
 		active: true,
 		selected: "daily",
+		param: "since",
 		categories: [
 			{ value: "daily", label: "Today" },
 			{ value: "weekly", label: "This week" },

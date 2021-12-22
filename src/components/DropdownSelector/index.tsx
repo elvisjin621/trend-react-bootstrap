@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Dropdown, FormControl } from "react-bootstrap";
 import { DescRangeContext } from "../../context/DescRangeContext";
+import { SelectItemsContext } from "../../context/SelectItemsContext";
 import { SearchItems } from "../../types/SearchItems";
 import { DropdownSelected } from "../DropdownSelected";
 
@@ -80,6 +81,7 @@ export const DropdownSelector: React.FC<DropdownSelectorProps> = ({
 	const [categories, updateCategories] = useState(items.categories);
 	const [active, setActive] = useState(-1);
 	const { range, value, setValue } = useContext(DescRangeContext);
+	const { searchItems, setSearchItems } = useContext(SelectItemsContext);
 	const menuRef = React.useRef<HTMLDivElement>(null);
 
 	const onKeyUpHandler = function (
@@ -89,10 +91,6 @@ export const DropdownSelector: React.FC<DropdownSelectorProps> = ({
 		const updatedCategories = items.categories.filter(
 			(category: any, index: number) => {
 				category.state = false;
-				if (category.label.toLowerCase() === value.toLowerCase()) {
-					category.state = true;
-					setActive(index);
-				}
 				return (
 					!value ||
 					category.label.toLowerCase().indexOf(value.toLowerCase()) !== -1
@@ -163,13 +161,26 @@ export const DropdownSelector: React.FC<DropdownSelectorProps> = ({
 	return (
 		<Dropdown
 			onSelect={(eventKey, e) => {
-				setSelected(eventKey ? eventKey : items.selected);
+				let item_value = eventKey ? eventKey : items.selected;
+				setSelected(item_value);
 				if (items.range === range && setValue)
 					setValue(
 						e.target
 							? (e.target as HTMLElement).innerText.toLowerCase()
 							: items.label
 					);
+				if (setSearchItems) {
+					let new_items = JSON.parse(searchItems),
+						index = new_items[0].indexOf(items.param);
+
+					if (index !== -1) {
+						new_items[1][index] = item_value;
+					} else {
+						new_items[0].push(items.param);
+						new_items[1].push(item_value);
+					}
+					setSearchItems(JSON.stringify(new_items));
+				}
 			}}
 		>
 			<Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">

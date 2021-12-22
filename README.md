@@ -44,3 +44,7 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Check on localhost
+
+You should enter [Heroku cors demo server](https://cors-anywhere.herokuapp.com/corsdemo) and press `Request temporary access to the demo server` button.

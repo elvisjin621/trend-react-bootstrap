@@ -21,7 +21,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({ ranges }) => {
 	];
 
 	return (
-		<Navbar bg="light" className="border mt-5 mb-5 rounded-top p-3">
+		<Navbar bg="light" className="border mt-5 rounded-top p-3">
 			<ButtonGroup size="sm">
 				{buttons.map((button, index) => {
 					let variant = path === button.path ? "primary" : "outline-secondary";

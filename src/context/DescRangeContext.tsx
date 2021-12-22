@@ -7,8 +7,8 @@ interface IDescRangeContext {
 }
 
 const defaultState = {
-	range: "date",
-	value: "today",
+	range: "",
+	value: "",
 };
 
 export const DescRangeContext =

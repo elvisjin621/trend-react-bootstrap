@@ -5,5 +5,6 @@ export interface SearchItems {
 	label: string;
 	active: boolean;
 	selected: string;
+	param: string;
 	categories: SearchItem[];
 }

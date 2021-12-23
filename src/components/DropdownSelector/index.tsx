@@ -153,7 +153,11 @@ export const DropdownSelector: React.FC<DropdownSelectorProps> = ({
 		if (active >= 0 && menuRef.current) {
 			const activeItem =
 				menuRef.current.getElementsByClassName("dropdown-item")[active];
-			activeItem.scrollIntoView();
+			activeItem.scrollIntoView({
+				behavior: "smooth",
+				block: "nearest",
+				inline: "start",
+			});
 			(activeItem as HTMLElement).focus();
 		}
 	}, [active]);
